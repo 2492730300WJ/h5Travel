@@ -1,0 +1,103 @@
+{
+	"pages": [{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "首页",
+				"navigationBarTextStyle": "black"
+			}
+		},
+		{
+			"path": "pages/my/my",
+			"style": {
+				"navigationBarTitleText": "我的",
+				"navigationBarTextStyle": "black"
+			}
+		},
+		{
+			"path": "pages/chat/chat",
+			"style": {
+				"navigationBarTitleText": "聊天",
+				"navigationBarTextStyle": "black"
+			}
+		},
+		{
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "登录",
+				"navigationBarTextStyle": "black"
+			}
+		},
+		{
+			"path": "pages/reg-pwd/reg-pwd",
+			"style": {
+				"navigationBarTitleText": "注册",
+				"navigationBarTextStyle": "black"
+			}
+		},
+		{
+			"path": "pages/reg/reg",
+			"style": {
+				"navigationBarTitleText": "输入手机号",
+				"navigationBarTextStyle": "black"
+			}
+		},
+		{
+			"path": "pages/find-pwd/find-pwd",
+			"style": {
+				"navigationBarTitleText": "忘记密码",
+				"navigationBarTextStyle": "black"
+			}
+		},
+		{
+			"path": "pages/my/address/address",
+			"style": {
+				"navigationBarTitleText": "我的地址",
+				"navigationBarTextStyle": "black"
+			}
+		}
+        ,{
+            "path" : "pages/my/address/addAddress",
+            "style" : {
+				"navigationBarTitleText": "新增地址",
+				"navigationBarTextStyle": "black"
+			}
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#ffffff",
+		"backgroundColor": "#ffffff"
+	},
+	"tabBar": {
+		"color": "#333",
+		"selectedColor": "#00bfff",
+		"backgroundColor": "#eee",
+		"borderStyle": "black",
+		"list": [{
+				"pagePath": "pages/index/index",
+				"text": "首页",
+				"iconPath": "./static/tabbar/index.png",
+				"selectedIconPath": "static/tabbar/indexed.png"
+			},
+			{
+				"pagePath": "pages/chat/chat",
+				"text": "聊天",
+				"iconPath": "static/tabbar/chat.png",
+				"selectedIconPath": "static/tabbar/chated.png"
+			},
+			// {
+			// 	"pagePath": "pages/paper/paper",
+			// 	"text": "小纸条",
+			// 	"iconPath": "static/tabbar/paper.png",
+			// 	"selectedIconPath": "static/tabbar/papered.png"
+			// },
+			{
+				"pagePath": "pages/my/my",
+				"text": "我的",
+				"iconPath": "static/tabbar/my.png",
+				"selectedIconPath": "static/tabbar/myed.png"
+			}
+		]
+	}
+}
