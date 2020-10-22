@@ -21,6 +21,13 @@
 			}
 		},
 		{
+			"path": "pages/media/media",
+			"style": {
+				"navigationBarTitleText": "视频",
+				"navigationBarTextStyle": "black"
+			}
+		},
+		{
 			"path": "pages/login/login",
 			"style": {
 				"navigationBarTitleText": "登录",
@@ -86,12 +93,12 @@
 				"iconPath": "static/tabbar/chat.png",
 				"selectedIconPath": "static/tabbar/chated.png"
 			},
-			// {
-			// 	"pagePath": "pages/paper/paper",
-			// 	"text": "小纸条",
-			// 	"iconPath": "static/tabbar/paper.png",
-			// 	"selectedIconPath": "static/tabbar/papered.png"
-			// },
+			{
+				"pagePath": "pages/media/media",
+				"text": "视频",
+				"iconPath": "static/tabbar/media.png",
+				"selectedIconPath": "static/tabbar/mediaed.png"
+			},
 			{
 				"pagePath": "pages/my/my",
 				"text": "我的",
