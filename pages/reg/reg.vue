@@ -1,7 +1,7 @@
 <template>
 	<view class="page_reg">
 		<input class="phone" type="number" focus maxlength="11" placeholder="手机号" :value="phone" @input="onKeyInput" />
-		<button class="submit" type="primary" @tap="nextPage" :disabled="buttonDisabled">下一步</button>
+		<button class="submit" type="primary" @tap="nextPage">下一步</button>
 		<text class="tip">我们将向您的手机发送验证短信</text>
 	</view>
 </template>
