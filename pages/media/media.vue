@@ -23,7 +23,6 @@
         </view>
     </view>
 </template>
-
 <script>
 	export default {
 	    data() {
@@ -36,9 +35,19 @@
 	                },
 	                {
 	                    text: '上饶站到了',
-	                    color: '#ff00ff',
+	                    color: '#aaaaff',
 	                    time: 3
-	                }
+	                },
+					{
+					    text: '好无聊',
+					    color: '#55ff7f',
+					    time: 4
+					},
+					{
+					    text: '睡觉睡觉',
+					    color: '#ff00ff',
+					    time: 5
+					}
 	            ],
 	            danmuValue: ''
 	        }
@@ -74,4 +83,8 @@
 	    }
 	}
 </script>
-
+<style>
+	#myVideo{
+		width: 100%;
+	}
+</style>

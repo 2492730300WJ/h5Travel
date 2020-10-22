@@ -24,4 +24,5 @@ export default {
 <style>
 	/*每个页面公共css */
 	@import "/common/css/iconfont.css";
+	  @import './common/css/uni.css';
 </style>
