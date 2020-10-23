@@ -1,48 +1,51 @@
 <template>
 	<view>
-	<uni-card
-		@click="videoClick('http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4')"
-	    mode="style"
-	    :is-shadow="true"
-	    thumbnail="https://img-blog.csdnimg.cn/20190301125102646.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTAxMDE5OA==,size_16,color_FFFFFF,t_70"
-	    extra="2020-10-22 18:00:00"
-	>
-	        一只傻鸟
-	</uni-card>
-	<uni-card
-		@click="videoClick('http://vjs.zencdn.net/v/oceans.mp4')"
-	    mode="style"
-	    :is-shadow="true"
-	    thumbnail="https://img-blog.csdnimg.cn/20190301125255914.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTAxMDE5OA==,size_16,color_FFFFFF,t_70"
-	    extra="2020-10-22 17:00:00"
-	>
-	        一只鲸鱼
-	</uni-card>
-	<uni-card
-		@click="videoClick('https://media.w3.org/2010/05/sintel/trailer.mp4')"
-	    mode="style"
-	    :is-shadow="true"
-	    thumbnail="https://img-blog.csdnimg.cn/20190301125528758.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTAxMDE5OA==,size_16,color_FFFFFF,t_70"
-	    extra="2020-10-22 16:00:00"
-	>
-	        风景
-	</uni-card>
-</view>
+		<view class="a-address" v-for="(item,index) in videoList" :key="index">
+			<uni-card @click="videoClick(item.url)" mode="style" :is-shadow="true" :thumbnail="item.cover" :extra="item.time">
+				{{item.description}}
+			</uni-card>
+		</view>
+	</view>
 </template>
 <script>
 	import uniCard from '@/components/uni-card/uni-card.vue'
 	export default {
-		components: {uniCard},
-	    data() {
-	       return {
-	       };
-	    },
-	    methods: {
+		components: {
+			uniCard
+		},
+		data() {
+			return {
+				videoList: ""
+			};
+		},
+		onLoad() {
+			this.init()
+		},
+		methods: {
 			videoClick(src) {
 				uni.navigateTo({
-					url: '/pages/media/mediaDetail?src='+src,
+					url: '/pages/media/mediaDetail?src=' + src,
 				})
+			},
+			init() {
+				var _self = this;
+				uni.request({
+					url: _self.$Url + '/video/get', //请求接口
+					header: {
+						'content-type': 'application/json; charset=UTF-8', //自定义请求头信息
+					},
+					method: 'POST',
+					data: {
+
+					},
+					success: (res) => { // 请求成功后返回
+						console.log(res)
+						if (res.data.exceptionCode == 200) {
+							this.videoList = res.data.result.videoList
+						}
+					}
+				});
 			}
-	    }
+		}
 	}
 </script>

@@ -37,12 +37,12 @@
 					url: _self.$Url + '/address/get', //请求接口
 					header: {
 						'content-type': 'application/json; charset=UTF-8', //自定义请求头信息
-						'refreshToken':uni.getStorageSync("refreshToken"),
-						'token':uni.getStorageSync("token"),
+						'refreshToken': uni.getStorageSync("refreshToken"),
+						'token': uni.getStorageSync("token"),
 					},
 					method: 'POST',
 					data: {
-						userId:uni.getStorageSync("userId")
+						userId: uni.getStorageSync("userId")
 					},
 					success: (res) => { // 请求成功后返回
 						console.log(res)
