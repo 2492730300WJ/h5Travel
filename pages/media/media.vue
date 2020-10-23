@@ -2,8 +2,25 @@
 	<view>
 		<swiper class="swiper" vertical="true" id="swiper" :style="{height : swiperHeight}" @change="swiperChange">
 			<swiper-item v-for="(item,index) in videoList" :key="index">
-				<video :style="{height : swiperHeight}" class="swiper-item" :src="item.url" controls loop :poster="item.cover" enable-play-gesture play-btn-position="center"
-				 :show-fullscreen-btn="false"></video>
+				<video :style="{height : swiperHeight}" class="swiper-item" :src="item.url" :controls="false" loop
+				 :enable-play-gesture="true" :show-fullscreen-btn="false" object-fit='fill' >
+				 <cover-view>
+				 	<cover-image  :src="avatar_img" class="video-image"></cover-image>
+				 	<cover-view class="video-love" @click="love()">
+				 		<uni-icons type="heart-filled" :color="isactive==true?'#f44336':'#ffffff'" size="33" />
+				 		<view class="video-num">15</view>
+				 	</cover-view>
+				 	<cover-view class="video-comm" @click="comm">
+				 		<uni-icons type="chat-filled" color="#ffffff" size="30" />
+				 		<view class="video-num">28</view>
+				 	</cover-view>
+				 	<cover-view class="video-redo" @click="redo">
+				 		<uni-icons type="redo-filled" color="#ffffff" size="30" />
+				 		<view class="video-num">300</view>
+				 	</cover-view>
+				 </cover-view>
+				 <view class="video-description" color="#FFF">@{{item.author}}<br>{{item.description}}</view>
+				 </video>
 			</swiper-item>
 		</swiper>
 	</view>
@@ -17,7 +34,7 @@
 		data() {
 			return {
 				videoList: "",
-				item:0,
+				item: 0,
 				swiperHeight: uni.getSystemInfoSync().windowHeight + "px"
 			};
 		},
@@ -55,12 +72,14 @@
 				var videoList = document.getElementById("swiper").getElementsByTagName("video");
 				console.log(e.detail.current)
 				videoList[e.detail.current].play();
-				if(this.item > e.detail.current){
+				if (this.item > e.detail.current) {
 					console.log(e.detail.current + 1)
 					videoList[e.detail.current + 1].pause();
-				}else{
+					videoList[e.detail.current + 1].currentTime=0
+				} else {
 					console.log(e.detail.current - 1)
 					videoList[e.detail.current - 1].pause();
+					videoList[e.detail.current - 1].currentTime=0
 				}
 				this.item = e.detail.current
 			}
@@ -72,5 +91,55 @@
 		height: 100%;
 		width: 100%;
 		z-index: 10;
+	}
+	.video-image {
+		position: fixed;
+		bottom: 45vh;
+		right: 12px;
+		height: 30px;
+		width: 30px;
+		border-radius: 50%;
+		border: 3px solid #fff;
+		z-index: 100;
+	}
+	
+	.video-love {
+		position: fixed;
+		bottom: 30vh;
+		right: 15px;
+		z-index: 100;
+	}
+	
+	.video-num {
+		text-align: center;
+		position: relative;
+		bottom: 5px;
+		font-size: 10px;
+		color: #FFFFFF;
+		z-index: 100;
+	}
+	
+	.video-comm {
+		position: fixed;
+		bottom: 20vh;
+		right: 15px;
+		z-index: 100;
+	}
+	
+	.video-redo {
+		position: fixed;
+		bottom: 10vh;
+		right: 15px;
+		z-index: 100;
+	}
+	.video-description{
+		position: fixed;
+		bottom: 5vh;
+		left: 10px;
+		right: 70px;
+		z-index: 100;
+		font-size: 10px;
+		color: #FFFFFF;
+		word-break:break-all;
 	}
 </style>
