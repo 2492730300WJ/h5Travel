@@ -112,14 +112,14 @@
 		width: 50px;
 		border-radius: 50%;
 		border: 3px solid #fff;
-		z-index: 100;
+		z-index: 9999;
 	}
 
 	.video-love {
 		position: fixed;
 		bottom: 30vh;
 		right: 15px;
-		z-index: 100;
+		z-index: 9999;
 	}
 
 	.video-num {
@@ -128,21 +128,21 @@
 		bottom: 5px;
 		font-size: 14px;
 		color: #FFFFFF;
-		z-index: 100;
+		z-index: 9999;
 	}
 
 	.video-comm {
 		position: fixed;
 		bottom: 20vh;
 		right: 15px;
-		z-index: 100;
+		z-index: 9999;
 	}
 
 	.video-redo {
 		position: fixed;
 		bottom: 10vh;
 		right: 15px;
-		z-index: 100;
+		z-index: 9999;
 	}
 
 	.video-description {
@@ -150,7 +150,7 @@
 		bottom: 5vh;
 		left: 14px;
 		right: 70px;
-		z-index: 100;
+		z-index: 9999;
 		font-size: 16px;
 		color: #FFFFFF;
 		word-break: break-all;
