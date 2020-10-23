@@ -3,24 +3,26 @@
 		<swiper class="swiper" vertical="true" id="swiper" :style="{height : swiperHeight}" @change="swiperChange">
 			<swiper-item v-for="(item,index) in videoList" :key="index">
 				<video :style="{height : swiperHeight}" class="swiper-item" :src="item.url" :controls="false" loop
-				 :enable-play-gesture="true" :show-fullscreen-btn="false" object-fit='fill' >
-				 <view class="video-description" color="#FFF">@{{item.author}}<br>{{item.description}}</view>
-				 </video>
-				 <cover-view>
-				 	<cover-image  :src="item.cover" class="video-image"></cover-image>
-				 	<cover-view class="video-love" @click="love()">
-				 		<uni-icons type="heart-filled" :color="isactive==true?'#f44336':'#ffffff'" size="44" />
-				 		<view class="video-num">15</view>
-				 	</cover-view>
-				 	<cover-view class="video-comm" @click="comm">
-				 		<uni-icons type="chat-filled" color="#ffffff" size="40" />
-				 		<view class="video-num">28</view>
-				 	</cover-view>
-				 	<cover-view class="video-redo" @click="redo">
-				 		<uni-icons type="redo-filled" color="#ffffff" size="40" />
-				 		<view class="video-num">300</view>
-				 	</cover-view>
-				 </cover-view>
+				 :enable-play-gesture="true" :show-fullscreen-btn="false" object-fit='fill' x5-playsinline="" playsinline="true"
+				 webkit-playsinline="true" x-webkit-airplay="allow" x5-video-player-type="h5" x5-video-player-fullscreen=""
+				 x5-video-orientation="portraint" :show-center-play-btn="false" :autoplay="item.flag">
+					<view class="video-description" color="#FFF">@{{item.author}}<br>{{item.description}}</view>
+				</video>
+				<cover-view>
+					<cover-image :src="item.cover" class="video-image"></cover-image>
+					<cover-view class="video-love" @click="love()">
+						<uni-icons type="heart-filled" :color="isactive==true?'#f44336':'#ffffff'" size="44" />
+						<view class="video-num">15</view>
+					</cover-view>
+					<cover-view class="video-comm" @click="comm">
+						<uni-icons type="chat-filled" color="#ffffff" size="40" />
+						<view class="video-num">28</view>
+					</cover-view>
+					<cover-view class="video-redo" @click="redo">
+						<uni-icons type="redo-filled" color="#ffffff" size="40" />
+						<view class="video-num">300</view>
+					</cover-view>
+				</cover-view>
 			</swiper-item>
 		</swiper>
 	</view>
@@ -36,9 +38,9 @@
 				videoList: "",
 				item: 0,
 				swiperHeight: uni.getSystemInfoSync().windowHeight + "px",
-				love_num:0,
-				comm_num:0,
-				redo_num:0,
+				love_num: 0,
+				comm_num: 0,
+				redo_num: 0,
 				isactive: false,
 			};
 		},
@@ -79,21 +81,19 @@
 				if (this.item > e.detail.current) {
 					console.log(e.detail.current + 1)
 					videoList[e.detail.current + 1].pause();
-					videoList[e.detail.current + 1].currentTime=0
+					videoList[e.detail.current + 1].currentTime = 0
 				} else {
 					console.log(e.detail.current - 1)
 					videoList[e.detail.current - 1].pause();
-					videoList[e.detail.current - 1].currentTime=0
+					videoList[e.detail.current - 1].currentTime = 0
 				}
 				this.item = e.detail.current
 			},
 			love(item) {
 				this.isactive = !this.isactive
 			},
-			comm() {
-			},
-			redo() {
-			}
+			comm() {},
+			redo() {}
 		}
 	}
 </script>
@@ -103,6 +103,7 @@
 		width: 100%;
 		z-index: 10;
 	}
+
 	.video-image {
 		position: fixed;
 		bottom: 45vh;
@@ -113,14 +114,14 @@
 		border: 3px solid #fff;
 		z-index: 100;
 	}
-	
+
 	.video-love {
 		position: fixed;
 		bottom: 30vh;
 		right: 15px;
 		z-index: 100;
 	}
-	
+
 	.video-num {
 		text-align: center;
 		position: relative;
@@ -129,21 +130,22 @@
 		color: #FFFFFF;
 		z-index: 100;
 	}
-	
+
 	.video-comm {
 		position: fixed;
 		bottom: 20vh;
 		right: 15px;
 		z-index: 100;
 	}
-	
+
 	.video-redo {
 		position: fixed;
 		bottom: 10vh;
 		right: 15px;
 		z-index: 100;
 	}
-	.video-description{
+
+	.video-description {
 		position: fixed;
 		bottom: 5vh;
 		left: 14px;
@@ -151,6 +153,6 @@
 		z-index: 100;
 		font-size: 16px;
 		color: #FFFFFF;
-		word-break:break-all;
+		word-break: break-all;
 	}
 </style>
