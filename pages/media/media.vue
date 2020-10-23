@@ -7,15 +7,15 @@
 				 <cover-view>
 				 	<cover-image  :src="avatar_img" class="video-image"></cover-image>
 				 	<cover-view class="video-love" @click="love()">
-				 		<uni-icons type="heart-filled" :color="isactive==true?'#f44336':'#ffffff'" size="33" />
+				 		<uni-icons type="heart-filled" :color="isactive==true?'#f44336':'#ffffff'" size="55" />
 				 		<view class="video-num">15</view>
 				 	</cover-view>
 				 	<cover-view class="video-comm" @click="comm">
-				 		<uni-icons type="chat-filled" color="#ffffff" size="30" />
+				 		<uni-icons type="chat-filled" color="#ffffff" size="50" />
 				 		<view class="video-num">28</view>
 				 	</cover-view>
 				 	<cover-view class="video-redo" @click="redo">
-				 		<uni-icons type="redo-filled" color="#ffffff" size="30" />
+				 		<uni-icons type="redo-filled" color="#ffffff" size="50" />
 				 		<view class="video-num">300</view>
 				 	</cover-view>
 				 </cover-view>
@@ -94,10 +94,10 @@
 	}
 	.video-image {
 		position: fixed;
-		bottom: 45vh;
-		right: 12px;
-		height: 30px;
-		width: 30px;
+		bottom: 52vh;
+		right: 10px;
+		height: 60px;
+		width: 60px;
 		border-radius: 50%;
 		border: 3px solid #fff;
 		z-index: 100;
@@ -105,7 +105,7 @@
 	
 	.video-love {
 		position: fixed;
-		bottom: 30vh;
+		bottom: 36vh;
 		right: 15px;
 		z-index: 100;
 	}
@@ -114,14 +114,14 @@
 		text-align: center;
 		position: relative;
 		bottom: 5px;
-		font-size: 10px;
+		font-size: 14px;
 		color: #FFFFFF;
 		z-index: 100;
 	}
 	
 	.video-comm {
 		position: fixed;
-		bottom: 20vh;
+		bottom: 23vh;
 		right: 15px;
 		z-index: 100;
 	}
@@ -135,7 +135,7 @@
 	.video-description{
 		position: fixed;
 		bottom: 5vh;
-		left: 10px;
+		left: 14px;
 		right: 70px;
 		z-index: 100;
 		font-size: 10px;
