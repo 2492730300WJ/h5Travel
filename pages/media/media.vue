@@ -4,23 +4,23 @@
 			<swiper-item v-for="(item,index) in videoList" :key="index">
 				<video :style="{height : swiperHeight}" class="swiper-item" :src="item.url" :controls="false" loop
 				 :enable-play-gesture="true" :show-fullscreen-btn="false" object-fit='fill' >
+				 <view class="video-description" color="#FFF">@{{item.author}}<br>{{item.description}}</view>
+				 </video>
 				 <cover-view>
 				 	<cover-image  :src="avatar_img" class="video-image"></cover-image>
 				 	<cover-view class="video-love" @click="love()">
-				 		<uni-icons type="heart-filled" :color="isactive==true?'#f44336':'#ffffff'" size="55" />
+				 		<uni-icons type="heart-filled" :color="isactive==true?'#f44336':'#ffffff'" size="44" />
 				 		<view class="video-num">15</view>
 				 	</cover-view>
 				 	<cover-view class="video-comm" @click="comm">
-				 		<uni-icons type="chat-filled" color="#ffffff" size="50" />
+				 		<uni-icons type="chat-filled" color="#ffffff" size="40" />
 				 		<view class="video-num">28</view>
 				 	</cover-view>
 				 	<cover-view class="video-redo" @click="redo">
-				 		<uni-icons type="redo-filled" color="#ffffff" size="50" />
+				 		<uni-icons type="redo-filled" color="#ffffff" size="40" />
 				 		<view class="video-num">300</view>
 				 	</cover-view>
 				 </cover-view>
-				 <view class="video-description" color="#FFF">@{{item.author}}<br>{{item.description}}</view>
-				 </video>
 			</swiper-item>
 		</swiper>
 	</view>
@@ -94,10 +94,10 @@
 	}
 	.video-image {
 		position: fixed;
-		bottom: 52vh;
+		bottom: 45vh;
 		right: 10px;
-		height: 60px;
-		width: 60px;
+		height: 50px;
+		width: 50px;
 		border-radius: 50%;
 		border: 3px solid #fff;
 		z-index: 100;
@@ -105,7 +105,7 @@
 	
 	.video-love {
 		position: fixed;
-		bottom: 36vh;
+		bottom: 30vh;
 		right: 15px;
 		z-index: 100;
 	}
@@ -121,7 +121,7 @@
 	
 	.video-comm {
 		position: fixed;
-		bottom: 23vh;
+		bottom: 20vh;
 		right: 15px;
 		z-index: 100;
 	}
@@ -138,7 +138,7 @@
 		left: 14px;
 		right: 70px;
 		z-index: 100;
-		font-size: 10px;
+		font-size: 14px;
 		color: #FFFFFF;
 		word-break:break-all;
 	}
