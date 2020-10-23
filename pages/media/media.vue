@@ -1,8 +1,9 @@
 <template>
 	<view>
-		<swiper class="swiper" vertical="true" id="swiper" :style="{height : swiperHeight}">
+		<swiper class="swiper" vertical="true" id="swiper" :style="{height : swiperHeight}" @change="swiperChange">
 			<swiper-item v-for="(item,index) in videoList" :key="index">
-				<video class="swiper-item" :src="item.url" controls loop="true"  :poster="item.cover" play-btn-position="center" :show-fullscreen-btn="false"></video>
+				<video class="swiper-item" :src="item.url" controls loop :poster="item.cover" enable-play-gesture
+				 play-btn-position="center" :show-fullscreen-btn="false"></video>
 			</swiper-item>
 		</swiper>
 	</view>
@@ -46,6 +47,12 @@
 						}
 					}
 				});
+			},
+			swiperChange(e) {
+				var videoList = document.getElementById("swiper").getElementsByTagName("video");
+				console.log(e.detail.current)
+				videoList[e.detail.current].pause()
+				console.log("停止")
 			}
 		}
 	}
