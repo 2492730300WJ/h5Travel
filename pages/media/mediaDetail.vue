@@ -2,7 +2,7 @@
 	<view>
 		<view class="uni-padding-wrap uni-common-mt">
 			<view>
-				<video id="myVideo" :src="src" @error="videoErrorCallback" :danmu-list="danmuList" enable-danmu danmu-btn controls></video>
+				<video @error="videoErrorCallback" id="myVideo" :src="src" :danmu-list="danmakuList" enable-danmu danmu-btn controls></video>
 			</view>
 			<!-- #ifndef MP-ALIPAY -->
 			<view class="uni-list uni-common-mt">
@@ -26,42 +26,41 @@
 	export default {
 		data() {
 			return {
+				videoId: '',
 				src: '',
-				danmuList: [{
-						text: '真好看',
-						color: '#ff0000',
-						time: 1
-					},
-					{
-						text: '上饶站到了',
-						color: '#aaaaff',
-						time: 3
-					},
-					{
-						text: '好无聊',
-						color: '#55ff7f',
-						time: 4
-					},
-					{
-						text: '睡觉睡觉',
-						color: '#ff00ff',
-						time: 5
-					}
-				],
+				danmakuList: [],
 				danmuValue: ''
 			}
+		},
+		onLoad(option) {
+			this.init(option);
 		},
 		onReady: function(res) {
 			// #ifndef MP-ALIPAY
 			this.videoContext = uni.createVideoContext('myVideo')
 			// #endif
 		},
-		onLoad(option) {
-			this.init(option);
-		},
 		methods: {
 			init(option) {
-				this.src = option.src;
+				this.videoId = option.videoId;
+				var _self = this;
+				uni.request({
+					url: _self.$Url + '/video/get', //请求接口
+					header: {
+						'content-type': 'application/json; charset=UTF-8', //自定义请求头信息
+					},
+					method: 'POST',
+					data: {
+						videoId: this.videoId
+					},
+					success: (res) => { // 请求成功后返回
+						console.log(res)
+						if (res.data.exceptionCode == 200) {
+							this.src = res.data.result.video.url;
+							this.danmakuList = res.data.result.danmakuList
+						}
+					}
+				});
 			},
 			sendDanmu: function() {
 				this.videoContext.sendDanmu({
@@ -70,12 +69,12 @@
 				});
 				this.danmuValue = '';
 			},
-			videoErrorCallback: function(e) {
-				uni.showModal({
-					content: e.target.errMsg,
-					showCancel: false
-				})
-			},
+			  videoErrorCallback: function(e) {
+			            uni.showModal({
+			                content: e.target.errMsg,
+			                showCancel: false
+			            })
+			        },
 			getRandomColor: function() {
 				const rgb = []
 				for (let i = 0; i < 3; ++i) {

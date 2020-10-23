@@ -1,10 +1,10 @@
 <template>
 	<view>
-		<view class="a-address" v-for="(item,index) in videoList" :key="index">
-			<uni-card @click="videoClick(item.url)" mode="style" :is-shadow="true" :thumbnail="item.cover" :extra="item.time">
-				{{item.description}}
-			</uni-card>
-		</view>
+		<swiper class="swiper" vertical="true" id="swiper" :style="{height : swiperHeight}">
+			<swiper-item v-for="(item,index) in videoList" :key="index">
+				<video class="swiper-item" :src="item.url" controls :loop="true"></video>
+			</swiper-item>
+		</swiper>
 	</view>
 </template>
 <script>
@@ -15,22 +15,23 @@
 		},
 		data() {
 			return {
-				videoList: ""
+				videoList: "",
+				swiperHeight: uni.getSystemInfoSync().windowHeight + "px",
 			};
 		},
 		onLoad() {
 			this.init()
 		},
 		methods: {
-			videoClick(src) {
+			videoClick(videoId) {
 				uni.navigateTo({
-					url: '/pages/media/mediaDetail?src=' + src,
+					url: '/pages/media/mediaDetail?videoId=' + videoId,
 				})
 			},
 			init() {
 				var _self = this;
 				uni.request({
-					url: _self.$Url + '/video/get', //请求接口
+					url: _self.$Url + '/video/list', //请求接口
 					header: {
 						'content-type': 'application/json; charset=UTF-8', //自定义请求头信息
 					},
@@ -49,3 +50,9 @@
 		}
 	}
 </script>
+<style scoped>
+	.swiper-item {
+		height: 100%;
+		width: 100%;
+	}
+</style>
