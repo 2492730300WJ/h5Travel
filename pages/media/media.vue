@@ -7,7 +7,7 @@
 				 <view class="video-description" color="#FFF">@{{item.author}}<br>{{item.description}}</view>
 				 </video>
 				 <cover-view>
-				 	<cover-image  :src="avatar_img" class="video-image"></cover-image>
+				 	<cover-image  :src="item.cover" class="video-image"></cover-image>
 				 	<cover-view class="video-love" @click="love()">
 				 		<uni-icons type="heart-filled" :color="isactive==true?'#f44336':'#ffffff'" size="44" />
 				 		<view class="video-num">15</view>
@@ -35,7 +35,11 @@
 			return {
 				videoList: "",
 				item: 0,
-				swiperHeight: uni.getSystemInfoSync().windowHeight + "px"
+				swiperHeight: uni.getSystemInfoSync().windowHeight + "px",
+				love_num:0,
+				comm_num:0,
+				redo_num:0,
+				isactive: false,
 			};
 		},
 		onLoad() {
@@ -82,6 +86,13 @@
 					videoList[e.detail.current - 1].currentTime=0
 				}
 				this.item = e.detail.current
+			},
+			love(item) {
+				this.isactive = !this.isactive
+			},
+			comm() {
+			},
+			redo() {
 			}
 		}
 	}
@@ -95,7 +106,7 @@
 	.video-image {
 		position: fixed;
 		bottom: 45vh;
-		right: 10px;
+		right: 8px;
 		height: 50px;
 		width: 50px;
 		border-radius: 50%;
@@ -138,7 +149,7 @@
 		left: 14px;
 		right: 70px;
 		z-index: 100;
-		font-size: 14px;
+		font-size: 16px;
 		color: #FFFFFF;
 		word-break:break-all;
 	}
