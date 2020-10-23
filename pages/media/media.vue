@@ -2,7 +2,7 @@
 	<view>
 		<swiper class="swiper" vertical="true" id="swiper" :style="{height : swiperHeight}">
 			<swiper-item v-for="(item,index) in videoList" :key="index">
-				<video class="swiper-item" :src="item.url" controls :loop="true"></video>
+				<video class="swiper-item" :src="item.url" controls loop="true"  :poster="item.cover" play-btn-position="center" :show-fullscreen-btn="false"></video>
 			</swiper-item>
 		</swiper>
 	</view>
