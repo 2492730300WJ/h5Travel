@@ -68,20 +68,22 @@
 				"navigationBarTitleText": "我的地址",
 				"navigationBarTextStyle": "black"
 			}
-		}
-        ,{
-            "path" : "pages/my/address/addAddress",
-            "style" : {
+		}, {
+			"path": "pages/my/address/addAddress",
+			"style": {
 				"navigationBarTitleText": "新增地址",
 				"navigationBarTextStyle": "black"
 			}
-        }
-    ],
+		}
+	],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#ffffff",
-		"backgroundColor": "#ffffff"
+		"backgroundColor": "#ffffff",
+		"app-plus": {
+			"titleNView": false
+		}
 	},
 	"tabBar": {
 		"color": "#333",
