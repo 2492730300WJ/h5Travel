@@ -10,17 +10,17 @@
 				</video>
 				<cover-view>
 					<cover-image :src="item.cover" class="video-image"></cover-image>
-					<cover-view class="video-love" @click="love()">
+					<cover-view class="video-love" @click="love(item)">
 						<uni-icons type="heart-filled" :color="isactive==true?'#f44336':'#ffffff'" size="44" />
-						<view class="video-num">15</view>
+						<view class="video-num">{{item.loveNum}}</view>
 					</cover-view>
 					<cover-view class="video-comm" @click="comm">
 						<uni-icons type="chat-filled" color="#ffffff" size="40" />
-						<view class="video-num">28</view>
+						<view class="video-num">{{item.commNum}}</view>
 					</cover-view>
 					<cover-view class="video-redo" @click="redo">
 						<uni-icons type="redo-filled" color="#ffffff" size="40" />
-						<view class="video-num">300</view>
+						<view class="video-num">{{item.redoNum}}</view>
 					</cover-view>
 				</cover-view>
 			</swiper-item>
@@ -76,21 +76,19 @@
 			swiperChange(e) {
 				var _self = this;
 				var videoList = document.getElementById("swiper").getElementsByTagName("video");
-				console.log(e.detail.current)
 				videoList[e.detail.current].play();
 				if (this.item > e.detail.current) {
-					console.log(e.detail.current + 1)
 					videoList[e.detail.current + 1].pause();
 					videoList[e.detail.current + 1].currentTime = 0
 				} else {
-					console.log(e.detail.current - 1)
 					videoList[e.detail.current - 1].pause();
 					videoList[e.detail.current - 1].currentTime = 0
 				}
 				this.item = e.detail.current
 			},
 			love(item) {
-				this.isactive = !this.isactive
+				this.isactive = !this.isactive;
+				item.loveNum = item.loveNum + 1;
 			},
 			comm() {},
 			redo() {}
