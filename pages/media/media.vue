@@ -66,8 +66,8 @@
 					},
 					success: (res) => { // 请求成功后返回
 						console.log(res)
-						if (res.data.exceptionCode == 200) {
-							this.videoList = res.data.result.videoList
+						if (res.data.code == 200) {
+							this.videoList = res.data.data.videoList
 							this.swiperHeight = uni.getSystemInfoSync().windowHeight + "px"
 						}
 					}

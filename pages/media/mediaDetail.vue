@@ -55,9 +55,9 @@
 					},
 					success: (res) => { // 请求成功后返回
 						console.log(res)
-						if (res.data.exceptionCode == 200) {
-							this.src = res.data.result.video.url;
-							this.danmakuList = res.data.result.danmakuList
+						if (res.data.code == 200) {
+							this.src = res.data.data.video.url;
+							this.danmakuList = res.data.data.danmakuList
 						}
 					}
 				});

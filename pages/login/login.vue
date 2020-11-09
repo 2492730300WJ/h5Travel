@@ -51,7 +51,8 @@
 		</view>
 		<!-- 对话框 -->
 		<uni-popup ref="popupDialog" type="dialog" @change="change">
-			<uni-popup-dialog :type="msgType" title="通知" content="欢迎使用 uni-popup!" :before-close="true" @confirm="dialogConfirm" @close="dialogClose"></uni-popup-dialog>
+			<uni-popup-dialog :type="msgType" title="通知" content="欢迎使用 uni-popup!" :before-close="true" @confirm="dialogConfirm"
+			 @close="dialogClose"></uni-popup-dialog>
 		</uni-popup>
 	</view>
 </template>
@@ -110,15 +111,15 @@
 					},
 					success: (res) => { //请求成功后返回
 						console.log(res)
-						if (res.data.exceptionCode == 200) {
-							uni.setStorageSync('refreshToken', res.data.result.refreshToken);
-							uni.setStorageSync('token', res.data.result.token);
-							uni.setStorageSync('userId', res.data.result.user.userId);
+						if (res.data.code == 200) {
+							uni.setStorageSync('refreshToken', res.data.data.refreshToken);
+							uni.setStorageSync('token', res.data.data.token);
+							uni.setStorageSync('userId', res.data.data.user.userId);
 							uni.switchTab({
 								url: '/pages/my/my'
 							})
 						} else {
-							this.errorMessage = res.data.exceptionMsg;
+							this.errorMessage = res.data.msg;
 							this.errorClass = 'isError';
 						}
 					}
@@ -302,7 +303,8 @@
 			margin: 20px;
 		}
 	}
-	.errorTag{
+
+	.errorTag {
 		text-align: right;
 	}
 

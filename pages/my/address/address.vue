@@ -46,8 +46,8 @@
 					},
 					success: (res) => { // 请求成功后返回
 						console.log(res)
-						if (res.data.exceptionCode == 200) {
-							this.addressList = res.data.result.addressList
+						if (res.data.code == 200) {
+							this.addressList = res.data.data.addressList
 						}
 					}
 				});
