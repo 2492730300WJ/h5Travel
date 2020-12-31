@@ -2,27 +2,27 @@
 	<view>
 		<swiper class="swiper" vertical="true" id="swiper" :style="{height : swiperHeight}" @change="swiperChange">
 			<swiper-item v-for="(item,index) in videoList" :key="index">
-				<video :style="{height : swiperHeight}" class="swiper-item" :src="item.url" :controls="false" loop
+				<video :id="`video_${item.videoId}`" :style="{height : swiperHeight}" class="swiper-item" :src="item.url" :controls="false" loop
 				 :enable-play-gesture="true" :show-fullscreen-btn="false" object-fit='fill' x5-playsinline="" playsinline="true"
 				 webkit-playsinline="true" x-webkit-airplay="allow" x5-video-player-type="h5" x5-video-player-fullscreen=""
 				 x5-video-orientation="portraint" :show-center-play-btn="false" :autoplay="item.flag">
 					<view class="video-description" color="#FFF">@{{item.author}}<br>{{item.description}}</view>
 				</video>
-				<cover-view>
+				<!-- <cover-view>
 					<cover-image :src="item.cover" class="video-image"></cover-image>
-					<cover-view class="video-love" @click="love(item)">
+					<view class="video-love" @click="love(item)">
 						<uni-icons type="heart-filled" :color="isactive==true?'#f44336':'#ffffff'" size="44" />
 						<view class="video-num">{{item.loveNum}}</view>
-					</cover-view>
+					</view>
 					<cover-view class="video-comm" @click="comm">
 						<uni-icons type="chat-filled" color="#ffffff" size="40" />
-						<view class="video-num">{{item.commNum}}</view>
+						<cover-view class="video-num">{{item.commNum}}</cover-view>
 					</cover-view>
 					<cover-view class="video-redo" @click="redo">
 						<uni-icons type="redo-filled" color="#ffffff" size="40" />
-						<view class="video-num">{{item.redoNum}}</view>
+						<cover-view class="video-num">{{item.redoNum}}</cover-view>
 					</cover-view>
-				</cover-view>
+				</cover-view> -->
 			</swiper-item>
 		</swiper>
 	</view>
@@ -42,6 +42,7 @@
 				comm_num: 0,
 				redo_num: 0,
 				isactive: false,
+				current_index: 0,
 			};
 		},
 		onLoad() {
@@ -54,6 +55,7 @@
 				})
 			},
 			init() {
+				console.log(111)
 				var _self = this;
 				uni.request({
 					url: _self.$Url + '/video/list', //请求接口
@@ -74,24 +76,30 @@
 				});
 			},
 			swiperChange(e) {
-				var _self = this;
-				var videoList = document.getElementById("swiper").getElementsByTagName("video");
-				videoList[e.detail.current].play();
-				if (this.item > e.detail.current) {
-					videoList[e.detail.current + 1].pause();
-					videoList[e.detail.current + 1].currentTime = 0
-				} else {
-					videoList[e.detail.current - 1].pause();
-					videoList[e.detail.current - 1].currentTime = 0
-				}
-				this.item = e.detail.current
+				// 暂停之前的视频
+				this.videoPause();
+				this.current_index = e.detail.current;
+				// 播放现在的视频
+				this.videoPlay();
 			},
 			love(item) {
 				this.isactive = !this.isactive;
 				item.loveNum = item.loveNum + 1;
 			},
 			comm() {},
-			redo() {}
+			redo() {},
+			videoPlay() {
+				let video_id = this.videoList[this.current_index].videoId;
+				this.videoCtx = uni.createVideoContext(`video_${video_id}`, this);
+				this.videoCtx.play();
+				this.videoCtx.currentTime = 0;
+			},
+			videoPause() {
+				let video_id = this.videoList[this.current_index].videoId;
+				this.videoCtx = uni.createVideoContext(`video_${video_id}`, this);
+				this.videoCtx.pause();
+				this.videoCtx.currentTime = 0;
+			},
 		}
 	}
 </script>

@@ -62,7 +62,7 @@
 			</view>
 		</view>
 		<uni-popup ref="popupDialog" type="dialog">
-			<uni-popup-dialog :type="msgType" title="提示" content="您当前还未登录,是否前往登录页面？" :before-close="true" @confirm="dialogConfirm"
+			<uni-popup-dialog title="提示" content="您当前还未登录,是否前往登录页面？" :before-close="true" @confirm="dialogConfirm"
 			 @close="dialogClose"></uni-popup-dialog>
 		</uni-popup>
 	</view>
@@ -174,9 +174,8 @@
 			initMy() {
 				// 校验是否存在refreshToken 如果没有显示登录按钮，隐藏功能按钮
 				if (uni.getStorageSync("refreshToken").length == 0) {
-					this.userInfo.headPicUrl =
-						'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595933597794&di=6acd9be6a31e3dc529c085f39cbf7713&imgtype=0&src=http%3A%2F%2Fhbimg.huabanimg.com%2F78a381109dd1919a0bde420b62525b2df37ac73f17b1-rx7BWq_fw236'
-					this.userInfo.nickName = '未登录/请先登录'
+					this.userInfo.headPicUrl = '/static/images/user/timg.jpg';
+					this.userInfo.nickName = '未登录/请先登录';
 				} else {
 					this.userInfo.headPicUrl = '/static/images/user/hp-admin.jpg';
 					this.userInfo.nickName = '你好';
