@@ -71,18 +71,17 @@
 		}, {
 			"path": "pages/my/address/addAddress",
 			"style": {
-				"navigationBarTitleText": "新增地址",
+				"TitleText": "新增地址",
 				"navigationBarTextStyle": "black"
 			}
 		}
 	],
 	"globalStyle": {
-		"navigationBarTextStyle": "white",
-		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#ffffff",
-		"backgroundColor": "#ffffff",
 		"app-plus": {
-			"titleNView": false
+			"titleNView": false,
+			"compatible":{
+				"ignoreVersion": true
+			}
 		}
 	},
 	"tabBar": {

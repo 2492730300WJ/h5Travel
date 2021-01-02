@@ -70,6 +70,9 @@
 <style>
 	.container {
 		background-color: #F2f2f2;
+		padding: 20px;
+		font-size: 14px;
+		line-height: 24px;
 	}
 
 	.address-list {
